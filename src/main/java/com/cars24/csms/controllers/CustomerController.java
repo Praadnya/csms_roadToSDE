@@ -11,6 +11,6 @@ public class CustomerController {
     @GetMapping("/profile")
     public String getCustomer()
     {
-        return "Welcome to Spring";
+        return "Welcome to Spring!!";
     }
 }
