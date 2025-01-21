@@ -3,6 +3,7 @@ package com.cars24.csms.controllers;
 import com.cars24.csms.data.req.CreateCustomerRequest;
 import com.cars24.csms.data.req.GetCustomerRequest;
 import com.cars24.csms.data.resp.CreateCustomerResponse;
+import com.cars24.csms.data.resp.GetCustomerResponse;
 import com.cars24.csms.services.impl.CustomerServiceImpl;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -31,12 +32,12 @@ public class CustomerController {
 
 
     @GetMapping("/profile/{customer_id}")
-    public ResponseEntity<CreateCustomerResponse> getCustomer(@Valid @PathVariable int customer_id)
+    public ResponseEntity<GetCustomerResponse> getCustomer(@Valid @PathVariable int customer_id)
     {
-       CreateCustomerResponse createCustomerResponse=new CreateCustomerResponse();
+       GetCustomerResponse getCustomerResponse=new GetCustomerResponse();
        log.info("[In get controller] getCustomerRequest{}",customer_id);
        customerService.getCustomer(customer_id);
-       return ResponseEntity.ok().body(createCustomerResponse);
+       return ResponseEntity.ok().body(getCustomerResponse);
     }
 
 
