@@ -29,9 +29,11 @@ public class CreateCustomerRequest {
     private String email;
     @Valid
     @NotBlank
-
-
     private String address;
+
+//    @Valid
+//    @NotBlank
+    private boolean isActive;
 
 
 

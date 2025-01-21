@@ -29,7 +29,7 @@ public class CustomerDaoImpl implements CustomerDao {
         customerEntity.setPhone(createCustomerRequest.getPhone());
         customerEntity.setEmail(createCustomerRequest.getEmail());
         customerEntity.setAddress(createCustomerRequest.getAddress());
-
+        customerEntity.setActive(true);
         customerRepository.save(customerEntity); //insert statement
 
 

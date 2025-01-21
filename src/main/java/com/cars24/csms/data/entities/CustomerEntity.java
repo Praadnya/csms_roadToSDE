@@ -1,8 +1,10 @@
 package com.cars24.csms.data.entities;
 
 import jakarta.persistence.Column;
+import lombok.Builder;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
+import org.springframework.boot.context.properties.bind.DefaultValue;
 import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
@@ -22,6 +24,9 @@ public class CustomerEntity {
     private String email;
     @jakarta.persistence.Column(nullable = false)
     private String address;
+    @Column(name="isActive",nullable=false)
+    private boolean isActive;
+
 
     public String getEmail() {
         return email;
@@ -63,6 +68,11 @@ public class CustomerEntity {
         this.address = address;
     }
 
+    public boolean isActive() {
+        return isActive;
+    }
 
-
+    public void setActive(boolean active) {
+        isActive = active;
+    }
 }

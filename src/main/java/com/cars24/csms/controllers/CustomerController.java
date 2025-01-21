@@ -36,7 +36,7 @@ public class CustomerController {
     }
 
 
-    @PostMapping
+    @PostMapping("/addCustomer")
 
     public ResponseEntity<CreateCustomerResponse> createCustomer(@Valid @RequestBody CreateCustomerRequest createCustomerRequest) //because we are using it there
     {
