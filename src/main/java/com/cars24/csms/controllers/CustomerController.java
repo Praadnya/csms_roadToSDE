@@ -1,6 +1,7 @@
 package com.cars24.csms.controllers;
 
 import com.cars24.csms.data.req.CreateCustomerRequest;
+import com.cars24.csms.data.req.GetCustomerRequest;
 import com.cars24.csms.data.resp.CreateCustomerResponse;
 import com.cars24.csms.services.impl.CustomerServiceImpl;
 import jakarta.validation.Valid;
@@ -29,10 +30,13 @@ public class CustomerController {
     private final CustomerServiceImpl customerService;
 
 
-    @GetMapping("/profile")
-    public String getCustomer()
+    @GetMapping("/profile/{customer_id}")
+    public ResponseEntity<CreateCustomerResponse> getCustomer(@Valid @PathVariable int customer_id)
     {
-        return "Welcome to Spring!!";
+       CreateCustomerResponse createCustomerResponse=new CreateCustomerResponse();
+       log.info("[In get controller] getCustomerRequest{}",customer_id);
+       customerService.getCustomer(customer_id);
+       return ResponseEntity.ok().body(createCustomerResponse);
     }
 
 

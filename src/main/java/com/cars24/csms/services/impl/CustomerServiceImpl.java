@@ -2,6 +2,7 @@ package com.cars24.csms.services.impl;
 
 import com.cars24.csms.data.dao.CustomerDaoImpl;
 import com.cars24.csms.data.req.CreateCustomerRequest;
+import com.cars24.csms.data.req.GetCustomerRequest;
 import com.cars24.csms.data.resp.CreateCustomerResponse;
 import com.cars24.csms.services.CustomerService;
 import lombok.RequiredArgsConstructor;
@@ -25,5 +26,13 @@ public class CustomerServiceImpl implements CustomerService {
         customerDao.createCustomer(createCustomerRequest);
         log.info("[Customer Service]CustomerService{}",createCustomerRequest);
         return null;
+    }
+
+    public CreateCustomerResponse getCustomer(int customer_id)
+    {
+        customerDao.getCustomer(customer_id);
+        log.info("[GetCustomerService]CustomerService{}",customer_id);
+        return null;
+
     }
 }
