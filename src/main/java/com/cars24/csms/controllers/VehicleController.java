@@ -26,15 +26,14 @@ public class VehicleController {
 
     @PostMapping("/create")
     public ResponseEntity<CreateVehicleResponse> createVehicle(@Valid @RequestBody CreateVehicleReq createVehicleReq) {
-        log.info("[createVehicle] createVehicleReq: {}", createVehicleReq);
-//        System.out.println("[createVehicle] createVehicleReq: {}"+ createVehicleReq);
+        log.info("[createVehicle] createVehicleReq: {}", createVehicleReq);g
 
         CreateVehicleResponse response = vehicleServiceManagementService.createVehicle(createVehicleReq);
 
         return ResponseEntity.ok().body(response);
     }
 
-//    public ResponseEntity<>
+
     @GetMapping("/fetch/{vehicleId}")
     public ResponseEntity<GetVehicleRes> getVehicleDetails(@PathVariable Integer vehicleId) {
 
