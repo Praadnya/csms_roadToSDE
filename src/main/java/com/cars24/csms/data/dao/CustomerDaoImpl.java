@@ -43,7 +43,7 @@ public class CustomerDaoImpl implements CustomerDao {
         return 0;
     }
 
-    public GetCustomerResponse getCustomer(int customer_id)
+    public CustomerEntity getCustomer(Integer customer_id)
     {
         CustomerEntity customerEntity= customerRepository.findById(customer_id) .orElseThrow(()->new RuntimeException("Customer not found with id: "+customer_id));
         GetCustomerResponse getCustomerResponse=new GetCustomerResponse();
@@ -53,7 +53,7 @@ public class CustomerDaoImpl implements CustomerDao {
         getCustomerResponse.setAddress(customerEntity.getAddress());
         log.info("[getCustomer] in DAO, retrieved record: {}",getCustomerResponse);
 //        return 0;
-        return null;
+        return customerEntity;
 
     }
 }

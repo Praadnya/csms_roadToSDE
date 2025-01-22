@@ -1,5 +1,6 @@
 package com.cars24.csms.controllers;
 
+import com.cars24.csms.data.entities.CustomerEntity;
 import com.cars24.csms.data.req.CreateCustomerRequest;
 import com.cars24.csms.data.req.GetCustomerRequest;
 import com.cars24.csms.data.resp.CreateCustomerResponse;
@@ -32,12 +33,12 @@ public class CustomerController {
 
 
     @GetMapping("/profile/{customer_id}")
-    public ResponseEntity<GetCustomerResponse> getCustomer(@Valid @PathVariable int customer_id)
+    public ResponseEntity<CustomerEntity> getCustomer(@Valid @PathVariable Integer customer_id)
     {
        GetCustomerResponse getCustomerResponse=new GetCustomerResponse();
        log.info("[In get controller] getCustomerRequest{}",customer_id);
-       customerService.getCustomer(customer_id);
-       return ResponseEntity.ok().body(getCustomerResponse);
+       CustomerEntity customerEntity=customerService.getCustomer(customer_id);
+       return ResponseEntity.ok().body(customerEntity);
     }
 
 
@@ -53,4 +54,5 @@ public class CustomerController {
         return ResponseEntity.ok().body(res);
 //        return null ;
     }
+
 }

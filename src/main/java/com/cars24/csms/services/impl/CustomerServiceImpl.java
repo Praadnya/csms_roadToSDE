@@ -1,9 +1,11 @@
 package com.cars24.csms.services.impl;
 
 import com.cars24.csms.data.dao.CustomerDaoImpl;
+import com.cars24.csms.data.entities.CustomerEntity;
 import com.cars24.csms.data.req.CreateCustomerRequest;
 import com.cars24.csms.data.req.GetCustomerRequest;
 import com.cars24.csms.data.resp.CreateCustomerResponse;
+import com.cars24.csms.data.resp.GetCustomerResponse;
 import com.cars24.csms.services.CustomerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -28,11 +30,11 @@ public class CustomerServiceImpl implements CustomerService {
         return null;
     }
 
-    public CreateCustomerResponse getCustomer(int customer_id)
+    public CustomerEntity getCustomer(Integer customer_id)
     {
-        customerDao.getCustomer(customer_id);
+        CustomerEntity resp= customerDao.getCustomer(customer_id);
         log.info("[GetCustomerService]CustomerService{}",customer_id);
-        return null;
+        return resp;
 
     }
 }

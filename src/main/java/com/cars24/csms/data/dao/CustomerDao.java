@@ -14,6 +14,6 @@ public interface CustomerDao {
 
     int createCustomer(CreateCustomerRequest createCustomerRequest);
 
-    GetCustomerResponse getCustomer(int customer_id);
+    CustomerEntity getCustomer(Integer customer_id);
 
 }
