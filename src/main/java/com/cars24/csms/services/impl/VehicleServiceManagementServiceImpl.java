@@ -49,7 +49,7 @@ public class VehicleServiceManagementServiceImpl implements VehicleServiceManage
         return response;
     }
 
-    public void deleteVehicle(Integer vehicle_id) {
-        vehicleDao.deleteVehicleById(vehicle_id);
-    }
+//    public void deleteVehicle(Integer vehicle_id) {
+//        vehicleDao.deleteVehicleById(vehicle_id);
+//    }
 }

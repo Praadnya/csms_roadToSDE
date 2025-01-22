@@ -1,6 +1,7 @@
-package com.cars24.csms.data.dao;
+package com.cars24.csms.data.dao.Impl;
 
 import com.cars24.csms.advice.ResourceNotFoundException;
+import com.cars24.csms.data.dao.VehicleDao;
 import com.cars24.csms.data.entities.VehicleEntity;
 import com.cars24.csms.data.repositories.VehiclesRepository;
 import com.cars24.csms.data.req.CreateVehicleReq;
@@ -35,11 +36,20 @@ public class VehicleDaoImpl implements VehicleDao {
 
     }
 
-    @Override
-    public void deleteVehicleById(Integer vehicleId) {
-        if(!repo.existsById(vehicleId)) {
-            throw new ResourceNotFoundException("Vehicle not Found for ID: "+ vehicleId);
-        }
-        repo.deleteById(vehicleId);
-    }
+
+
+
+
+
+
+
+//    @Override
+//    public void deleteVehicleById(Integer vehicleId) {
+//        if(!repo.existsById(vehicleId)) {
+//            throw new ResourceNotFoundException("Vehicle not Found for ID: "+ vehicleId);
+//        }
+//        repo.deleteById(vehicleId);
+//    }
+
+
 }

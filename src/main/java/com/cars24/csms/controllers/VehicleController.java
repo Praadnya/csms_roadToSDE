@@ -43,10 +43,10 @@ public class VehicleController {
         return ResponseEntity.ok().body(response);
     }
 
-    @DeleteMapping("/delete/{vehicleId}")
-    public ResponseEntity<String> deleteVehicle(@PathVariable Integer vehicleId) {
-        vehicleServiceManagementService.deleteVehicle(vehicleId);
-        return ResponseEntity.ok().body("Vehicle deleted Successfully");
-    }
+//    @DeleteMapping("/delete/{vehicleId}")
+//    public ResponseEntity<String> deleteVehicle(@PathVariable Integer vehicleId) {
+//        vehicleServiceManagementService.deleteVehicle(vehicleId);
+//        return ResponseEntity.ok().body("Vehicle deleted Successfully");
+//    }
 
 }

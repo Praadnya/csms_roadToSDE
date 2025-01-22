@@ -11,5 +11,9 @@ import org.springframework.stereotype.Service;
 public interface VehicleDao {
     VehicleEntity createVehicle(CreateVehicleReq createVehicleReq);
     VehicleEntity getVehicle(Integer vehicleId);
-    void deleteVehicleById(Integer vehicleId);
+
+
+
+//    void deleteVehicleById(Integer vehicleId);
+
 }
