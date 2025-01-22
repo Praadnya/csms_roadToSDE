@@ -15,7 +15,9 @@ public interface CustomerService {
     CustomerEntity getCustomer(Integer customer_id);
 
     CustomerEntity deleteCustomer(Integer customer_id);
-
+    boolean existUser(String username);
 //    UpdateCustomerResponse updateCustomer(UpdateCustomerRequest updateCustomerRequest);
+
+
 
 }

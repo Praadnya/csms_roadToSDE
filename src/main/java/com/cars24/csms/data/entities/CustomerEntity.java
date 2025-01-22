@@ -38,6 +38,11 @@ public class CustomerEntity {
     private String address;
     @Column(name="isActive",nullable=false)
     private boolean isActive;
+    @Getter
+    @Setter
+    @Column(name="userType", nullable = false)
+    private String userType;
+
 
 
     public boolean isActive() {

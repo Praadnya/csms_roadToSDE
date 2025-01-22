@@ -47,6 +47,12 @@ public class CustomerServiceImpl implements CustomerService {
         return customerEntity;
     }
 
+    @Override
+    public boolean existUser(String username) {
+        return false;
+    }
+
+
 //    @Override
 //    public UpdateCustomerResponse updateCustomer(UpdateCustomerRequest updateCustomerRequest) {
 //        return null;

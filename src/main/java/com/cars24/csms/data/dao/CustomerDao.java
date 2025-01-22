@@ -19,5 +19,7 @@ public interface CustomerDao {
     CustomerEntity deleteCustomer(Integer customer_id);
 
 
+
+
 //    CustomerEntity deleteCustomerById(int customer_id);
 }
