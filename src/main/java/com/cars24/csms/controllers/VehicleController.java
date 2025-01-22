@@ -3,6 +3,7 @@ package com.cars24.csms.controllers;
 
 import com.cars24.csms.data.req.CreateVehicleReq;
 import com.cars24.csms.data.res.CreateVehicleResponse;
+import com.cars24.csms.data.res.GetVehicleRes;
 import com.cars24.csms.services.VehicleServiceManagementService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -10,10 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 @RestController
@@ -33,7 +31,16 @@ public class VehicleController {
 
         CreateVehicleResponse response = vehicleServiceManagementService.createVehicle(createVehicleReq);
 
+        return ResponseEntity.ok().body(response);
+    }
 
+//    public ResponseEntity<>
+    @GetMapping("/{vehicleId}")
+    public ResponseEntity<GetVehicleRes> getVehicleDetails(@PathVariable Integer vehicleId) {
+
+        //this should call a method in service layer that returns GetVehicleRes object
+        //it should process the passed parameter
+        GetVehicleRes response = vehicleServiceManagementService.getVehicle(vehicleId);
         return ResponseEntity.ok().body(response);
     }
 
