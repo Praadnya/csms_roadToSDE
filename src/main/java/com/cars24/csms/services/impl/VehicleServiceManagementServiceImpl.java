@@ -48,4 +48,8 @@ public class VehicleServiceManagementServiceImpl implements VehicleServiceManage
         response.setColor(vehicleEntity.getColor());
         return response;
     }
+
+    public void deleteVehicle(Integer vehicle_id) {
+        vehicleDao.deleteVehicleById(vehicle_id);
+    }
 }

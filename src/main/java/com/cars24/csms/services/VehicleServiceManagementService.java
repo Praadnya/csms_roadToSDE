@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 public interface VehicleServiceManagementService {
     CreateVehicleResponse createVehicle(CreateVehicleReq request);
     GetVehicleRes getVehicle(Integer vehicle_id);
+    void deleteVehicle(Integer vehicle_id);
 
 
 }

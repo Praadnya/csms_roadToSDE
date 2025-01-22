@@ -4,9 +4,7 @@ import com.cars24.csms.advice.ResourceNotFoundException;
 import com.cars24.csms.data.entities.VehicleEntity;
 import com.cars24.csms.data.repositories.VehiclesRepository;
 import com.cars24.csms.data.req.CreateVehicleReq;
-import com.cars24.csms.data.res.GetVehicleRes;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
@@ -35,5 +33,13 @@ public class VehicleDaoImpl implements VehicleDao {
         return repo.findById(vehicleId)
                 .orElseThrow(() -> new ResourceNotFoundException("Vehicle not found for ID: " + vehicleId));
 
+    }
+
+    @Override
+    public void deleteVehicleById(Integer vehicleId) {
+        if(!repo.existsById(vehicleId)) {
+            throw new ResourceNotFoundException("Vehicle not Found for ID: "+ vehicleId);
+        }
+        repo.deleteById(vehicleId);
     }
 }

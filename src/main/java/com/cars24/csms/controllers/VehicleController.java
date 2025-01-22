@@ -35,13 +35,19 @@ public class VehicleController {
     }
 
 //    public ResponseEntity<>
-    @GetMapping("/{vehicleId}")
+    @GetMapping("/fetch/{vehicleId}")
     public ResponseEntity<GetVehicleRes> getVehicleDetails(@PathVariable Integer vehicleId) {
 
         //this should call a method in service layer that returns GetVehicleRes object
         //it should process the passed parameter
         GetVehicleRes response = vehicleServiceManagementService.getVehicle(vehicleId);
         return ResponseEntity.ok().body(response);
+    }
+
+    @DeleteMapping("/delete/{vehicleId}")
+    public ResponseEntity<String> deleteVehicle(@PathVariable Integer vehicleId) {
+        vehicleServiceManagementService.deleteVehicle(vehicleId);
+        return ResponseEntity.ok().body("Vehicle deleted Successfully");
     }
 
 }
