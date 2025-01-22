@@ -26,7 +26,7 @@ public class VehicleController {
 
     @PostMapping("/create")
     public ResponseEntity<CreateVehicleResponse> createVehicle(@Valid @RequestBody CreateVehicleReq createVehicleReq) {
-        log.info("[createVehicle] createVehicleReq: {}", createVehicleReq);g
+        log.info("[createVehicle] createVehicleReq: {}", createVehicleReq);
 
         CreateVehicleResponse response = vehicleServiceManagementService.createVehicle(createVehicleReq);
 
