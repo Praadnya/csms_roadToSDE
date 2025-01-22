@@ -2,7 +2,6 @@ package com.cars24.csms.controllers;
 
 import com.cars24.csms.data.entities.AppointmentsEntity;
 import com.cars24.csms.data.req.CreateAppointmentsRequest;
-import com.cars24.csms.data.req.GetAppointmentsRequest;
 import com.cars24.csms.data.response.CreateAppointmentsResponse;
 import com.cars24.csms.data.response.GetAppointmentsResponse;
 import com.cars24.csms.services.impl.AppointmentsServiceImpl;

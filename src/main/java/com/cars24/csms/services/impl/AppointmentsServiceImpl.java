@@ -25,7 +25,7 @@ public class AppointmentsServiceImpl implements AppointmentsService {
     public AppointmentsEntity getAppointments(Integer appointment_id) {
 
         AppointmentsEntity response = appointmentsDao.getAppointments(appointment_id);
-        log.info("[GetCustomerService]CustomerService{}",appointment_id);
+        log.info("[GetAppointmentsService] AppointmentsService{}",appointment_id);
         return response;
     }
 }
