@@ -3,6 +3,7 @@ package com.cars24.csms.data.dao;
 import com.cars24.csms.data.entities.CustomerEntity;
 import com.cars24.csms.data.repositories.CustomerRepository;
 import com.cars24.csms.data.req.CreateCustomerRequest;
+import com.cars24.csms.data.req.DeleteCustomerRequest;
 import com.cars24.csms.data.resp.DeleteCustomerResponse;
 import com.cars24.csms.data.resp.GetCustomerResponse;
 import jakarta.persistence.EntityNotFoundException;
@@ -55,11 +56,20 @@ public class CustomerDaoImpl implements CustomerDao {
     }
 
     @Override
-    public void deleteCustomer(Integer customer_id) {
-       customerRepository.deleteById(customer_id);
+    public CustomerEntity deleteCustomer(Integer customer_id) {
+       CustomerEntity customerEntity=customerRepository.findById(customer_id) .orElseThrow(()->new RuntimeException("Customer not found with id: "+customer_id));
+        customerEntity.setActive(false);
+        customerRepository.save(customerEntity);
+        DeleteCustomerResponse deleteCustomerResponse=new DeleteCustomerResponse();
 
+        deleteCustomerResponse.setName(customerEntity.getName());
+        deleteCustomerResponse.setPhone(customerEntity.getPhone());
+        deleteCustomerResponse.setEmail(customerEntity.getEmail());
+        deleteCustomerResponse.setAddress(customerEntity.getAddress());
+        log.info("[Delete Customer DAO]: {}", deleteCustomerResponse);
+        return customerEntity;
     }
-
+    /*
     @Override
     public CustomerEntity deleteCustomerById(int customer_id) {
         // Retrieve the entity by its ID
@@ -75,7 +85,7 @@ public class CustomerDaoImpl implements CustomerDao {
             return customerEntity;
         } else {
             throw new EntityNotFoundException("Customer with ID " + customer_id + " not found.");
-        }
-    }
+        }*/
+//    }
 
 }

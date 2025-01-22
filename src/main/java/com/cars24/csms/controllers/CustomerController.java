@@ -4,9 +4,12 @@ import com.cars24.csms.data.entities.CustomerEntity;
 import com.cars24.csms.data.req.CreateCustomerRequest;
 import com.cars24.csms.data.req.DeleteCustomerRequest;
 import com.cars24.csms.data.req.GetCustomerRequest;
+import com.cars24.csms.data.req.UpdateCustomerRequest;
 import com.cars24.csms.data.resp.CreateCustomerResponse;
 import com.cars24.csms.data.resp.DeleteCustomerResponse;
 import com.cars24.csms.data.resp.GetCustomerResponse;
+import com.cars24.csms.data.resp.UpdateCustomerResponse;
+import com.cars24.csms.services.CustomerService;
 import com.cars24.csms.services.impl.CustomerServiceImpl;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -57,12 +60,24 @@ public class CustomerController {
 //        return null ;
     }
     @DeleteMapping("/deleteCustomer/{customer_id}")
-    public void deleteCustomer(@Valid @PathVariable Integer customer_id)
+    public ResponseEntity<CustomerEntity> deleteCustomer(@Valid @PathVariable Integer customer_id)
     {
         DeleteCustomerResponse deleteCustomerResponse=new DeleteCustomerResponse();
         log.info("[IN DELETE CONTROLLER] deleteCustomerRequest{}",customer_id);
-        customerService.deleteCustomer(customer_id);
-        return;
+        CustomerEntity customerEntity=customerService.deleteCustomer(customer_id);
+        return ResponseEntity.ok().body(customerEntity);
 
     }
+/*
+    @PutMapping("/updateCustomer/{customer_id}")
+
+    public ResponseEntity<UpdateCustomerResponse> updateCustomer(Integer customer_id)
+    {
+        UpdateCustomerResponse updateCustomerResponse=new UpdateCustomerResponse();
+        log.info("[Update Customer Controller]updateCustomerRequest{}",customer_id);
+        customerService.updateCustomer(customer_id);
+        return ResponseEntity.ok().body(updateCustomerResponse);
+
+
+    }*/
 }

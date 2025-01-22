@@ -4,8 +4,10 @@ import com.cars24.csms.data.dao.CustomerDaoImpl;
 import com.cars24.csms.data.entities.CustomerEntity;
 import com.cars24.csms.data.req.CreateCustomerRequest;
 import com.cars24.csms.data.req.GetCustomerRequest;
+import com.cars24.csms.data.req.UpdateCustomerRequest;
 import com.cars24.csms.data.resp.CreateCustomerResponse;
 import com.cars24.csms.data.resp.GetCustomerResponse;
+import com.cars24.csms.data.resp.UpdateCustomerResponse;
 import com.cars24.csms.services.CustomerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -39,9 +41,16 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public void deleteCustomer(Integer customer_id) {
-        customerDao.deleteCustomer(customer_id);
+    public CustomerEntity deleteCustomer(Integer customer_id) {
+        CustomerEntity customerEntity=customerDao.deleteCustomer(customer_id);
         log.info("[IN DELETECUSTOMERDAO]CustomerService{}",customer_id);
-        return;
+        return customerEntity;
     }
+
+//    @Override
+//    public UpdateCustomerResponse updateCustomer(UpdateCustomerRequest updateCustomerRequest) {
+//        return null;
+//    }
+
+
 }
