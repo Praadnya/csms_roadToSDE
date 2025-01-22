@@ -2,8 +2,10 @@ package com.cars24.csms.controllers;
 
 import com.cars24.csms.data.entities.CustomerEntity;
 import com.cars24.csms.data.req.CreateCustomerRequest;
+import com.cars24.csms.data.req.DeleteCustomerRequest;
 import com.cars24.csms.data.req.GetCustomerRequest;
 import com.cars24.csms.data.resp.CreateCustomerResponse;
+import com.cars24.csms.data.resp.DeleteCustomerResponse;
 import com.cars24.csms.data.resp.GetCustomerResponse;
 import com.cars24.csms.services.impl.CustomerServiceImpl;
 import jakarta.validation.Valid;
@@ -54,5 +56,13 @@ public class CustomerController {
         return ResponseEntity.ok().body(res);
 //        return null ;
     }
+    @DeleteMapping("/deleteCustomer/{customer_id}")
+    public void deleteCustomer(@Valid @PathVariable Integer customer_id)
+    {
+        DeleteCustomerResponse deleteCustomerResponse=new DeleteCustomerResponse();
+        log.info("[IN DELETE CONTROLLER] deleteCustomerRequest{}",customer_id);
+        customerService.deleteCustomer(customer_id);
+        return;
 
+    }
 }

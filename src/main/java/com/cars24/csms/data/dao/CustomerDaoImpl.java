@@ -3,17 +3,14 @@ package com.cars24.csms.data.dao;
 import com.cars24.csms.data.entities.CustomerEntity;
 import com.cars24.csms.data.repositories.CustomerRepository;
 import com.cars24.csms.data.req.CreateCustomerRequest;
-import com.cars24.csms.data.req.GetCustomerRequest;
-import com.cars24.csms.data.resp.CreateCustomerResponse;
+import com.cars24.csms.data.resp.DeleteCustomerResponse;
 import com.cars24.csms.data.resp.GetCustomerResponse;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -56,4 +53,29 @@ public class CustomerDaoImpl implements CustomerDao {
         return customerEntity;
 
     }
+
+    @Override
+    public void deleteCustomer(Integer customer_id) {
+       customerRepository.deleteById(customer_id);
+
+    }
+
+    @Override
+    public CustomerEntity deleteCustomerById(int customer_id) {
+        // Retrieve the entity by its ID
+        Optional<CustomerEntity> customerEntityOptional = customerRepository.findById(customer_id);
+        System.out.println(customerEntityOptional.get());
+        if (customerEntityOptional.isPresent()) {
+            CustomerEntity customerEntity = customerEntityOptional.get();
+
+            // Perform the delete operation
+            customerRepository.delete(customerEntity);
+
+            // Return the deleted entity
+            return customerEntity;
+        } else {
+            throw new EntityNotFoundException("Customer with ID " + customer_id + " not found.");
+        }
+    }
+
 }

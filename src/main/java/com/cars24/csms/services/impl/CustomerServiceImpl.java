@@ -37,4 +37,11 @@ public class CustomerServiceImpl implements CustomerService {
         return resp;
 
     }
+
+    @Override
+    public void deleteCustomer(Integer customer_id) {
+        customerDao.deleteCustomer(customer_id);
+        log.info("[IN DELETECUSTOMERDAO]CustomerService{}",customer_id);
+        return;
+    }
 }

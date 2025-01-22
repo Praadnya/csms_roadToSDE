@@ -11,4 +11,7 @@ import org.springframework.stereotype.Service;
 public interface CustomerService {
     CreateCustomerResponse createCustomer(CreateCustomerRequest createCustomerRequest );
     CustomerEntity getCustomer(Integer customer_id);
+
+    void deleteCustomer(Integer customer_id);
+
 }
