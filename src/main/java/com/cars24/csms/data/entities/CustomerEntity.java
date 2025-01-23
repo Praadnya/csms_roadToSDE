@@ -1,5 +1,6 @@
 package com.cars24.csms.data.entities;
 
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import jakarta.persistence.Column;
 import jakarta.persistence.ForeignKey;
 import jakarta.persistence.OneToOne;
@@ -41,7 +42,7 @@ public class CustomerEntity {
     private String address;
     @Column(name="isActive",nullable=false)
     private boolean isActive;
-
+    @JsonIdentityReference
     @OneToOne
     @JoinColumn(name="user_id", referencedColumnName = "user_id",nullable = false, unique = true)
     private UserDetailsEntity userDetailsEntity;

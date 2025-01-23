@@ -1,6 +1,7 @@
 package com.cars24.csms.data.entities;
 
 import com.cars24.csms.data.enums.UserType;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Generated;
@@ -26,7 +27,7 @@ public class UserDetailsEntity {
 
     @Column(name="user_type",nullable = false)
     private String user_type;
-
+    @JsonBackReference
     @OneToOne(mappedBy = "userDetailsEntity")
     private CustomerEntity customerEntity;
 

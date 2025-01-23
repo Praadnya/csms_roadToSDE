@@ -14,9 +14,9 @@ import org.springframework.stereotype.Service;
 @Service
 public interface CustomerService {
     ResponseEntity<ApiResponse> createCustomer(CreateCustomerRequest createCustomerRequest );
-    CustomerEntity getCustomer(Integer customer_id);
+    ResponseEntity<ApiResponse> getCustomer(Integer customer_id);
 
-    CustomerEntity deleteCustomer(Integer customer_id);
+    ResponseEntity<ApiResponse> deleteCustomer(Integer customer_id);
     boolean existUser(String username);
 //    UpdateCustomerResponse updateCustomer(UpdateCustomerRequest updateCustomerRequest);
 

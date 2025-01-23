@@ -20,6 +20,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
+import java.util.HashMap;
+import java.util.Map;
+
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -39,19 +43,41 @@ public class CustomerServiceImpl implements CustomerService {
 //        return null;
 //    }
 
-    public CustomerEntity getCustomer(Integer customer_id)
+    public ResponseEntity<ApiResponse> getCustomer(Integer customer_id)
     {
-        CustomerEntity resp= customerDao.getCustomer(customer_id);
+        ApiResponse apiResponse=new ApiResponse();
+
+        GetCustomerResponse getCustomerResponse= customerDao.getCustomer(customer_id);
+        Map<String,Object> messageResponse=new HashMap<>();
+        messageResponse.put("name",getCustomerResponse.getName());
+        messageResponse.put("email",getCustomerResponse.getEmail());
+        messageResponse.put("address",getCustomerResponse.getAddress());
+        messageResponse.put("phone",getCustomerResponse.getPhone());
+
+        apiResponse.setStatusCode(HttpStatus.OK.value());
+        apiResponse.setService("Get customer - "+HttpStatus.OK.value());
+        apiResponse.setMessage("Get user successful");
+        apiResponse.setData(messageResponse);
+        apiResponse.setSuccess(true);
+
         log.info("[GetCustomerService]CustomerService{}",customer_id);
-        return resp;
+
+        return ResponseEntity.ok().body(apiResponse);
 
     }
 
     @Override
-    public CustomerEntity deleteCustomer(Integer customer_id) {
-        CustomerEntity customerEntity=customerDao.deleteCustomer(customer_id);
+    public ResponseEntity<ApiResponse> deleteCustomer(Integer customer_id) {
+        ApiResponse apiResponse=new ApiResponse();
+
+       customerDao.deleteCustomer(customer_id);
         log.info("[IN DELETECUSTOMERDAO]CustomerService{}",customer_id);
-        return customerEntity;
+        apiResponse.setStatusCode(HttpStatus.OK.value());
+        apiResponse.setSuccess(true);
+        apiResponse.setMessage("Profile deleted successfully");
+        apiResponse.setData(null);
+        apiResponse.setService("Customer - "+HttpStatus.OK.value());
+        return ResponseEntity.ok().body(apiResponse);
     }
 
     @Override

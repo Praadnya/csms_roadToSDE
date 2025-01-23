@@ -14,7 +14,7 @@ public interface CustomerDao {
 
     int createCustomer(CreateCustomerRequest createCustomerRequest, int id);
 
-    CustomerEntity getCustomer(Integer customer_id);
+    GetCustomerResponse getCustomer(Integer customer_id);
 
     CustomerEntity deleteCustomer(Integer customer_id);
 

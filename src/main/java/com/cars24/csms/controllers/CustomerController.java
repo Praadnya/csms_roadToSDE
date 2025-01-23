@@ -35,12 +35,10 @@ public class CustomerController {
 
 
     @GetMapping("/profile/{customer_id}")
-    public ResponseEntity<CustomerEntity> getCustomer(@Valid @PathVariable Integer customer_id)
+    public ResponseEntity<ApiResponse> getCustomer(@Valid @PathVariable Integer customer_id)
     {
-       GetCustomerResponse getCustomerResponse=new GetCustomerResponse();
-       log.info("[In get controller] getCustomerRequest{}",customer_id);
-       CustomerEntity customerEntity=customerService.getCustomer(customer_id);
-       return ResponseEntity.ok().body(customerEntity);
+       return customerService.getCustomer(customer_id);
+//       return ResponseEntity.ok().body(customerEntity);
     }
 
 
@@ -57,12 +55,12 @@ public class CustomerController {
 //        return null ;
     }
     @DeleteMapping("/deleteCustomer/{customer_id}")
-    public ResponseEntity<CustomerEntity> deleteCustomer(@Valid @PathVariable Integer customer_id)
+    public ResponseEntity<ApiResponse> deleteCustomer(@Valid @PathVariable Integer customer_id)
     {
-        DeleteCustomerResponse deleteCustomerResponse=new DeleteCustomerResponse();
+//        DeleteCustomerResponse deleteCustomerResponse=new DeleteCustomerResponse();
         log.info("[IN DELETE CONTROLLER] deleteCustomerRequest{}",customer_id);
-        CustomerEntity customerEntity=customerService.deleteCustomer(customer_id);
-        return ResponseEntity.ok().body(customerEntity);
+       return customerService.deleteCustomer(customer_id);
+//        return ResponseEntity.ok().body(api);
 
     }
 /*
