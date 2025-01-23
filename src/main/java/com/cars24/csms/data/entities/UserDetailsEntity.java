@@ -1,11 +1,12 @@
 package com.cars24.csms.data.entities;
 
+import com.cars24.csms.data.enums.UserType;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Generated;
 import org.springframework.boot.autoconfigure.web.WebProperties;
 
-@Table
+@Table(name="UserDetailsEntity")
 @Data
 @Entity
 public class UserDetailsEntity {
@@ -23,9 +24,11 @@ public class UserDetailsEntity {
     @Column(name="isActive", nullable = false)
     private boolean isActive;
 
+    @Column(name="user_type",nullable = false)
+    private String user_type;
 
-
-
+    @OneToOne(mappedBy = "userDetailsEntity")
+    private CustomerEntity customerEntity;
 
 
 }

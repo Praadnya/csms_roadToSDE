@@ -8,6 +8,6 @@ import org.springframework.stereotype.Service;
 @Service
 public interface UserService {
     public ResponseEntity<ApiResponse> signUpUser(SignupUserRequest signupUserRequest);
-    public boolean existUser(String username);
+//    public boolean existUser(String username);
 
 }

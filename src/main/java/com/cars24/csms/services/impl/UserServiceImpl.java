@@ -3,6 +3,7 @@ package com.cars24.csms.services.impl;
 import com.cars24.csms.data.dao.UserDetailsDao;
 import com.cars24.csms.data.dao.UserDetailsDaoImpl;
 import com.cars24.csms.data.entities.UserDetailsEntity;
+import com.cars24.csms.data.enums.UserType;
 import com.cars24.csms.data.req.SignupUserRequest;
 import com.cars24.csms.data.resp.ApiResponse;
 import com.cars24.csms.exceptions.UserServiceException;
@@ -33,10 +34,12 @@ public class UserServiceImpl implements UserService {
         }
         else {
             apiResponse.setStatusCode(HttpStatus.OK.value());
-            apiResponse.setSuccess(false);
+            apiResponse.setSuccess(true);
             apiResponse.setMessage("User signup successfully");
             apiResponse.setData(null);
             apiResponse.setService("App user - "+HttpStatus.OK.value());
+//            apiResponse.setUserType(UserType.CUSTOMER);
+
             userDetailsDao.createUser(signupUserRequest);
         }
         log.info("[signup]: {}", apiResponse);
@@ -47,9 +50,5 @@ public class UserServiceImpl implements UserService {
 
     }
 
-    @Override
-    public boolean existUser(String username) {
-        log.info("[Service existUser]: {}",username);
-        return userDetailsDao.existUser(username);
-    }
+
 }

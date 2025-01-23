@@ -1,6 +1,8 @@
 package com.cars24.csms.data.entities;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.ForeignKey;
+import jakarta.persistence.OneToOne;
 import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
@@ -13,6 +15,7 @@ import javax.persistence.*;
 
 @jakarta.persistence.Table(name = "customers")
 @jakarta.persistence.Entity
+@Data
 public class CustomerEntity {
     @Setter
     @Getter
@@ -38,10 +41,15 @@ public class CustomerEntity {
     private String address;
     @Column(name="isActive",nullable=false)
     private boolean isActive;
-    @Getter
-    @Setter
-    @Column(name="userType", nullable = false)
-    private String userType;
+
+    @OneToOne
+    @JoinColumn(name="user_id", referencedColumnName = "user_id",nullable = false, unique = true)
+    private UserDetailsEntity userDetailsEntity;
+
+
+
+
+
 
 
 

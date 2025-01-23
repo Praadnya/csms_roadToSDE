@@ -5,10 +5,7 @@ import com.cars24.csms.data.req.CreateCustomerRequest;
 import com.cars24.csms.data.req.DeleteCustomerRequest;
 import com.cars24.csms.data.req.GetCustomerRequest;
 import com.cars24.csms.data.req.UpdateCustomerRequest;
-import com.cars24.csms.data.resp.CreateCustomerResponse;
-import com.cars24.csms.data.resp.DeleteCustomerResponse;
-import com.cars24.csms.data.resp.GetCustomerResponse;
-import com.cars24.csms.data.resp.UpdateCustomerResponse;
+import com.cars24.csms.data.resp.*;
 import com.cars24.csms.services.CustomerService;
 import com.cars24.csms.services.impl.CustomerServiceImpl;
 import jakarta.validation.Valid;
@@ -49,14 +46,14 @@ public class CustomerController {
 
     @PostMapping("/addCustomer")
 
-    public ResponseEntity<CreateCustomerResponse> createCustomer(@Valid @RequestBody CreateCustomerRequest createCustomerRequest) //because we are using it there
+    public ResponseEntity<ApiResponse> createCustomer(@Valid @RequestBody CreateCustomerRequest createCustomerRequest) //because we are using it there
     {
 //        System.out.println("[createsCustomer] createCustomerRequest{}"+createCustomerRequest);
-        CreateCustomerResponse res=new CreateCustomerResponse();
+//        CreateCustomerResponse res=new CreateCustomerResponse();
 
         log.info("[IN CONTROLLER] createCustomerRequest{}",createCustomerRequest);
-        customerService.createCustomer(createCustomerRequest);
-        return ResponseEntity.ok().body(res);
+        return customerService.createCustomer(createCustomerRequest);
+//        return ResponseEntity.ok().body(res);
 //        return null ;
     }
     @DeleteMapping("/deleteCustomer/{customer_id}")

@@ -1,6 +1,7 @@
 package com.cars24.csms.data.dao;
 
 import com.cars24.csms.data.entities.CustomerEntity;
+import com.cars24.csms.data.entities.UserDetailsEntity;
 import com.cars24.csms.data.repositories.CustomerRepository;
 import com.cars24.csms.data.req.CreateCustomerRequest;
 import com.cars24.csms.data.req.DeleteCustomerRequest;
@@ -23,7 +24,7 @@ public class CustomerDaoImpl implements CustomerDao {
 
 
 
-    public int createCustomer(CreateCustomerRequest createCustomerRequest)
+    public int createCustomer(CreateCustomerRequest createCustomerRequest, int userId)
     {
         CustomerEntity customerEntity=new CustomerEntity();
         customerEntity.setCustId(0);
@@ -32,6 +33,12 @@ public class CustomerDaoImpl implements CustomerDao {
         customerEntity.setEmail(createCustomerRequest.getEmail());
         customerEntity.setAddress(createCustomerRequest.getAddress());
         customerEntity.setActive(true);
+        UserDetailsEntity userDetailsEntity=new UserDetailsEntity();
+        userDetailsEntity.setUser_id(userId);
+        customerEntity.setUserDetailsEntity(userDetailsEntity);
+
+
+
         customerRepository.save(customerEntity); //insert statement
 //        customerRepository.(Collections.singleton(createCustomerRequest.getCustId()));
 
@@ -48,7 +55,10 @@ public class CustomerDaoImpl implements CustomerDao {
         getCustomerResponse.setName(customerEntity.getName());
         getCustomerResponse.setPhone(customerEntity.getPhone());
         getCustomerResponse.setEmail(customerEntity.getEmail());
+
         getCustomerResponse.setAddress(customerEntity.getAddress());
+
+
         log.info("[getCustomer] in DAO, retrieved record: {}",getCustomerResponse);
 //        return 0;
         return customerEntity;
@@ -87,5 +97,11 @@ public class CustomerDaoImpl implements CustomerDao {
             throw new EntityNotFoundException("Customer with ID " + customer_id + " not found.");
         }*/
 //    }
+
+    public boolean checkIfEmailExists(String email)
+    {
+        return  customerRepository.existsByEmail(email);
+
+    }
 
 }

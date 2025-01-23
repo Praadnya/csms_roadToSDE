@@ -17,10 +17,12 @@ import javax.persistence.Column;
 public class CreateCustomerRequest {
     @Valid
     private int custId;
+    @Valid @Size(min=3, max=45, message = "Name should be in between 3 to 45 characters only!") @NotBlank
+
     private String name;
    //checks for white spaces and null values
     @Valid
-    @Pattern(regexp = "^[6-9]\\d{9}$") @NotBlank
+    @Pattern(regexp = "^[6-9]\\d{9}$",message = "Phone number should be 10 digits only!") @NotBlank
     private String phone;
     @Valid
     @Email
@@ -30,6 +32,7 @@ public class CreateCustomerRequest {
     @Valid
     @NotBlank
     private String address;
+
 
 //    @Valid
 //    @NotBlank

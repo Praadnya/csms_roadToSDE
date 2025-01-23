@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 
 public interface CustomerDao {
 
-    int createCustomer(CreateCustomerRequest createCustomerRequest);
+    int createCustomer(CreateCustomerRequest createCustomerRequest, int id);
 
     CustomerEntity getCustomer(Integer customer_id);
 

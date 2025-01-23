@@ -13,7 +13,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
+@RestController //if you don't write this you gt 404 not found error
+
 @RequiredArgsConstructor
 @Validated
 @Slf4j
@@ -22,13 +23,13 @@ public class UserController {
     private final UserDetailsDaoImpl userDetailsDao;
     private final UserServiceImpl userService;
     @GetMapping("/login")
-    public String getResponseFromUserDao(@Valid @RequestBody LoginUserRequest loginUserRequest)
+    public void getResponseFromUserDao(@Valid @RequestBody LoginUserRequest loginUserRequest)
     {
-        log.info("[User controller]: {}", loginUserRequest);
+//        log.info("[User controller]: {}", loginUserRequest);
 
         userDetailsDao.getUserDetails(loginUserRequest);
         log.info("[User controller]: {}", loginUserRequest);
-        return "";
+        return;
     }
 
     @PostMapping("/signup")

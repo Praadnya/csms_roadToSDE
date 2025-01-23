@@ -2,7 +2,9 @@ package com.cars24.csms.data.dao;
 
 
 //whener
+import com.cars24.csms.data.entities.CustomerEntity;
 import com.cars24.csms.data.entities.UserDetailsEntity;
+import com.cars24.csms.data.enums.UserType;
 import com.cars24.csms.data.repositories.UserRepository;
 import com.cars24.csms.data.req.LoginUserRequest;
 import com.cars24.csms.data.req.SignupUserRequest;
@@ -48,9 +50,19 @@ public class UserDetailsDaoImpl implements UserDetailsDao{
         ObjectMapper objectMapper = new ObjectMapper();
         UserDetailsEntity userDetailsEntity = objectMapper.convertValue(signupUserRequest, UserDetailsEntity.class);
         userDetailsEntity.setActive(true);
+//        userDetailsEntity.setUserType(UserType.CUSTOMER);
 
         userRepository.save(userDetailsEntity);
 
         return "";
+    }
+
+    public int getUserId(String username)
+    {
+        UserDetailsEntity userDetailsEntity=userRepository.findByUsername(username);
+        int userId=userDetailsEntity.getUser_id();
+        log.info("[get userId] in Dao: {}",userId);
+        return userId;
+
     }
 }
