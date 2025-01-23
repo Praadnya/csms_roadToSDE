@@ -12,14 +12,14 @@ public class VehicleEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "vehicle_id")
-    private int vehicle_id;
+    private int vehicleId;
 
     @Column(name = "customer_id")
-    private int customer_id;
+    private int customerId;
 
 
     @Column(name ="license_plate")
-    private String license_plate;
+    private String licensePlate;
 
     @Column(name = "model")
     private String modelName;
@@ -32,4 +32,7 @@ public class VehicleEntity {
 
     @Column(name = "color")
     private String color;
+
+    @Column(name ="deleted")
+    private boolean deleted;
 }

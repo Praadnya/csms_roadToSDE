@@ -1,12 +1,12 @@
 package com.cars24.csms.data.repositories;
 
-import com.cars24.csms.data.entities.AppUserDetails;
+import com.cars24.csms.data.entities.AppUserDetailsEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface AppUserDetailsRepository extends JpaRepository<AppUserDetails, Integer> {
+public interface AppUserDetailsRepository extends JpaRepository<AppUserDetailsEntity, Integer> {
 
-    AppUserDetails findAppUserDetailsByUsernameAndPassword(String username, String password);
+    AppUserDetailsEntity findAppUserDetailsByUsernameAndPassword(String username, String password);
     boolean existsByUsername(String username);
 }

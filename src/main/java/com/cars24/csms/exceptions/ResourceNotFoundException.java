@@ -1,4 +1,4 @@
-package com.cars24.csms.advice;
+package com.cars24.csms.exceptions;
 
 public class ResourceNotFoundException extends RuntimeException {
 

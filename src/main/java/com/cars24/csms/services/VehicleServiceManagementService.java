@@ -1,16 +1,15 @@
 package com.cars24.csms.services;
 
 import com.cars24.csms.data.req.CreateVehicleReq;
-import com.cars24.csms.data.res.CreateVehicleResponse;
-import com.cars24.csms.data.res.GetVehicleRes;
+import com.cars24.csms.data.res.ApiResponse;
 import org.springframework.stereotype.Service;
 
 
 @Service
 public interface VehicleServiceManagementService {
-    CreateVehicleResponse createVehicle(CreateVehicleReq request);
-    GetVehicleRes getVehicle(Integer vehicle_id);
-//    void deleteVehicle(Integer vehicle_id);
+    ApiResponse createVehicle(CreateVehicleReq request);
+    ApiResponse getVehicles(Integer vehicle_id);
+    ApiResponse deleteVehicle(String licensePlate);
 
 
 }

@@ -2,8 +2,7 @@ package com.cars24.csms.controllers;
 
 
 import com.cars24.csms.data.req.CreateVehicleReq;
-import com.cars24.csms.data.res.CreateVehicleResponse;
-import com.cars24.csms.data.res.GetVehicleRes;
+import com.cars24.csms.data.res.ApiResponse;
 import com.cars24.csms.services.VehicleServiceManagementService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -25,28 +24,28 @@ public class VehicleController {
     private final VehicleServiceManagementService vehicleServiceManagementService;
 
     @PostMapping("/create")
-    public ResponseEntity<CreateVehicleResponse> createVehicle(@Valid @RequestBody CreateVehicleReq createVehicleReq) {
+    public ResponseEntity<ApiResponse> createVehicle(@Valid @RequestBody CreateVehicleReq createVehicleReq) {
         log.info("[createVehicle] createVehicleReq: {}", createVehicleReq);
 
-        CreateVehicleResponse response = vehicleServiceManagementService.createVehicle(createVehicleReq);
+        ApiResponse response = vehicleServiceManagementService.createVehicle(createVehicleReq);
 
         return ResponseEntity.ok().body(response);
     }
 
 
-    @GetMapping("/fetch/{vehicleId}")
-    public ResponseEntity<GetVehicleRes> getVehicleDetails(@PathVariable Integer vehicleId) {
+    @GetMapping("/fetch/{customerId}")
+    public ResponseEntity<ApiResponse> getVehicleDetails(@PathVariable Integer customerId) {
 
         //this should call a method in service layer that returns GetVehicleRes object
         //it should process the passed parameter
-        GetVehicleRes response = vehicleServiceManagementService.getVehicle(vehicleId);
-        return ResponseEntity.ok().body(response);
+        ApiResponse apiResponse = vehicleServiceManagementService.getVehicles(customerId);
+        return ResponseEntity.ok().body(apiResponse);
     }
 
-//    @DeleteMapping("/delete/{vehicleId}")
-//    public ResponseEntity<String> deleteVehicle(@PathVariable Integer vehicleId) {
-//        vehicleServiceManagementService.deleteVehicle(vehicleId);
-//        return ResponseEntity.ok().body("Vehicle deleted Successfully");
-//    }
+    @DeleteMapping("/delete/{licensePlate}")
+    public ResponseEntity<ApiResponse> deleteVehicle(@PathVariable String licensePlate) {
+        ApiResponse apiResponse= vehicleServiceManagementService.deleteVehicle(licensePlate);
+        return ResponseEntity.ok().body(apiResponse);
+    }
 
 }

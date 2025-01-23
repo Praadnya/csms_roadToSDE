@@ -2,6 +2,7 @@ package com.cars24.csms.advice;
 
 
 import com.cars24.csms.data.res.ApiResponse;
+import com.cars24.csms.exceptions.ResourceNotFoundException;
 import com.cars24.csms.exceptions.UserServiceException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -50,4 +51,17 @@ public class GlobalExceptionHandler {
 
         return ResponseEntity.badRequest().body(apiResponse);
     }
+
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public ResponseEntity<ApiResponse> handleResourceNotFoundException(ResourceNotFoundException exception) {
+        ApiResponse apiResponse = new ApiResponse();
+        apiResponse.setStatusCode(HttpStatus.BAD_REQUEST.value());
+        apiResponse.setSuccess(Boolean.FALSE);
+        apiResponse.setMessage(exception.getMessage());
+        apiResponse.setService("APPVEH" + HttpStatus.BAD_REQUEST.value());
+        apiResponse.setData(null);
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(apiResponse);
+    }
+
 }
