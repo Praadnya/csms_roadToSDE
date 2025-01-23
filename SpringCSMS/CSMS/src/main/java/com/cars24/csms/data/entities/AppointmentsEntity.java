@@ -24,4 +24,6 @@ public class AppointmentsEntity {
     private String appointmentDate;
     @Column(nullable = false)
     private String status;
+    @Column(name = "is_deleted", nullable = false)
+    private boolean isDeleted = false;
 }

@@ -17,18 +17,19 @@ import org.springframework.web.bind.annotation.*;
 @Service
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/users")
+@RequestMapping("/AppUsers")
 public class AppUserController {
-    private final AppUserServiceImpl appUserService;
+    private final AppUserServiceImpl appUserServiceImpl;
     @GetMapping("/login")
     public ResponseEntity<LoginResponse> getAppUser(@Valid @RequestBody LoginRequest loginRequest){
-        LoginResponse loginResponse = appUserService.getAppUserDetails(loginRequest);
+        log.info("[getAppUser] loginRequest{}", loginRequest);
+        LoginResponse loginResponse = appUserServiceImpl.getAppUserDetails(loginRequest);
         return ResponseEntity.ok().body(loginResponse);
     }
 
     @PostMapping("/signup")
     public ResponseEntity<ApiResponse> createAppUser(@Valid @RequestBody SignupRequest signupRequest){
-        log.info("sign_up");
-        return appUserService.signUp(signupRequest);
+        log.info("[createAppUser] signupRequest{}", signupRequest);
+        return appUserServiceImpl.signUp(signupRequest);
     }
 }

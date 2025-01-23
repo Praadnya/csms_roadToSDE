@@ -27,7 +27,7 @@ public class AppUserDaoImpl implements AppUserDao {
         AppUserDetailsEntity appUserDetails;
         ObjectMapper mapper = new ObjectMapper();
         appUserDetails = mapper.convertValue(signupRequest, AppUserDetailsEntity.class);
-        appUserDetails.setEnabled(true);
+        appUserDetails.set_enabled(true);
         appUserRepository.save(appUserDetails);
     }
 }

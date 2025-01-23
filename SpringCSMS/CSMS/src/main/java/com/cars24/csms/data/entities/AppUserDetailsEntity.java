@@ -15,6 +15,5 @@ public class AppUserDetailsEntity {
     private String username;
     @Column(name = "password")
     private String password;
-    private boolean isEnabled;
-
+    private boolean is_enabled;
 }

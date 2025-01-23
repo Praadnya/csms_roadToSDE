@@ -1,5 +1,6 @@
 package com.cars24.csms.Services.Impl;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +19,7 @@ import com.cars24.csms.Services.AppointmentService;
 
 import java.util.List;
 
+@Slf4j
 @RequiredArgsConstructor
 @Service
 public class AppointmentServiceImpl implements AppointmentService {
@@ -26,23 +28,32 @@ public class AppointmentServiceImpl implements AppointmentService {
     final private VehicleRepository vehicleRepository;
     final private CustomerRepository customerRepository;
 
-    public List<AppointmentsEntity> getAppointment(GetAppointmentRequest getAppointmentRequest){
-        return appointmentDao.getAppointment(getAppointmentRequest);
+    public AppointmentsEntity getAppointments(Integer appointments_id)
+    {
+        AppointmentsEntity resp= appointmentDao.getAppointments(appointments_id);
+        log.info("[GetAppointmentsService]AppointmentsService{}",appointments_id);
+        return resp;
     }
 
     final private ServiceRepository serviceRepository;
     @Override
     public ResponseEntity<ApiResponse> CreateAppointmentResponse(CreateAppointmentRequest createAppointmentRequest) {
-        if(!customerRepository.existsById(createAppointmentRequest.getCustomer_id())){
+        boolean cid = customerRepository.existsById(createAppointmentRequest.getCustomer_id());
+        log.info("[CreateAppointmentResponse] cid: {}",cid);
+        if(!cid){
             throw new UserServiceException("No Record present of given Customer Id");
         }
-        if(!serviceRepository.existsById(createAppointmentRequest.getService_id())){
-            throw new UserServiceException("No Record present of given Customer Id");
+        boolean sid = serviceRepository.existsById(createAppointmentRequest.getService_id());
+        log.info("[CreateAppointmentResponse] sid: {}",sid);
+        if(!sid){
+            throw new UserServiceException("No Record present of given Service Id");
         }
-        if(!vehicleRepository.existsById(createAppointmentRequest.getVehicle_id())){
-            throw new UserServiceException("No Record present of given Customer Id");
+        boolean vid = vehicleRepository.existsById(createAppointmentRequest.getVehicle_id());
+        log.info("[CreateAppointmentResponse] vid: {}",vid);
+        if(!vid){
+            throw new UserServiceException("No Record present of given Vehicle Id");
         }
-        if(appointmentRepository.existsByCSVId(
+        if(appointmentRepository.existsByCustomerIdAndServiceIdAndVehicleId(
                 createAppointmentRequest.getService_id(),
                 createAppointmentRequest.getVehicle_id(),
                 createAppointmentRequest.getCustomer_id())
@@ -57,4 +68,17 @@ public class AppointmentServiceImpl implements AppointmentService {
         apiResponse.setService("APP_USER = "+ HttpStatus.OK.value());
         return ResponseEntity.ok().body(apiResponse);
     }
+
+//    @Override
+//    public ResponseEntity<ApiResponse> deleteAppointment(int appointmentId) {
+//        log.info("[DeleteAppointment] appointmentId: {}", appointmentId);
+//        appointmentDao.deleteAppointments(appointmentId);
+//        ApiResponse apiResponse = new ApiResponse();
+//        apiResponse.setMessage("Deleted Successfully!!");
+//        apiResponse.setStatusCode(HttpStatus.OK.value());
+//        apiResponse.setData(null);
+//        apiResponse.setSuccess(true);
+//        apiResponse.setService("DELETE_SERVICE = " + HttpStatus.OK.value());
+//        return ResponseEntity.ok().body(apiResponse);
+//    }
 }

@@ -10,5 +10,6 @@ import java.util.List;
 @Service
 public interface AppointmentDao {
     int createAppointment(CreateAppointmentRequest createAppointmentRequest);
-    List<AppointmentsEntity> getAppointment(GetAppointmentRequest getAppointmentRequest);
+    AppointmentsEntity getAppointments(Integer appointments_id);
+    void deleteAppointments(int appointmentId);
 }
